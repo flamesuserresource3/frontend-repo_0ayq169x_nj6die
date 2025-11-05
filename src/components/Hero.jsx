@@ -4,14 +4,25 @@ import Spline from '@splinetool/react-spline';
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-[#0b0f19]">
-      {/* Spline Cover - always full bleed */}
+      {/* Spline Cover - full bleed (AI voice agent aura) */}
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/7m4PRZ7kg6K1jPfF/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        <Spline scene="https://prod.spline.design/4cHQr84zOGAHOehh/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
-      {/* Soft Aurora overlay for readability */}
+      {/* Readability and aura emphasis overlays (do not block interaction) */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] rounded-full opacity-30 blur-3xl bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.45),transparent_60%)]" />
+        {/* Soft vignette for contrast */}
+        <div className="absolute inset-0 bg-[radial-gradient(1200px_600px_at_50%_30%,transparent,rgba(11,15,25,0.45))]" />
+        {/* Subtle aurora sweep */}
+        <div className="absolute -top-48 left-1/2 -translate-x-1/2 w-[1400px] h-[1400px] rounded-full opacity-25 blur-3xl bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.35),transparent_60%)]" />
+        {/* Circular gradient waves to match the aura theme */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="relative h-[60vmin] w-[60vmin]">
+            <div className="absolute inset-0 rounded-full opacity-30 animate-[pulseRing_6s_ease-in-out_infinite] bg-[conic-gradient(from_0deg,rgba(6,182,212,0.25),rgba(37,99,235,0.25),rgba(124,58,237,0.25),rgba(6,182,212,0.25))] blur-[40px]" />
+            <div className="absolute inset-10 rounded-full border border-white/10" />
+          </div>
+        </div>
+        {/* Fade at bottom for legibility over content */}
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0b0f19] to-transparent" />
       </div>
 
@@ -30,17 +41,18 @@ export default function Hero() {
           animate="visible"
           variants={{
             hidden: {},
-            visible: {
-              transition: { staggerChildren: 0.12 }
-            }
+            visible: { transition: { staggerChildren: 0.12 } },
           }}
           className="mt-4 font-semibold leading-[1.1] text-white text-4xl md:text-6xl"
         >
-          {['Building', 'Experiences', 'That', 'Feel', 'Alive.'].map((w, i) => (
+          {['Futuristic', 'Web', 'Experiences', 'That', 'Convert.'].map((w, i) => (
             <motion.span
               key={i}
               className="inline-block mr-2"
-              variants={{ hidden: { y: 40, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 120 } } }}
+              variants={{
+                hidden: { y: 40, opacity: 0 },
+                visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 120 } },
+              }}
             >
               {w}
             </motion.span>
@@ -53,7 +65,7 @@ export default function Hero() {
           transition={{ delay: 0.8, duration: 0.8 }}
           className="mt-5 text-slate-300 text-lg md:text-xl"
         >
-          Modern, conversion-driven websites — fast, responsive, unforgettable.
+          Premium, dark-theme portfolio with motion, 3D aura, and clear calls to action.
         </motion.p>
 
         <div className="mt-8 flex items-center justify-center gap-4">
@@ -80,6 +92,7 @@ export default function Hero() {
 
       <style>{`
         @keyframes gradientMove { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+        @keyframes pulseRing { 0%, 100% { transform: scale(1); opacity: 0.35 } 50% { transform: scale(1.06); opacity: 0.2 } }
       `}</style>
     </section>
   );
